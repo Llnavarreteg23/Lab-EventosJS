@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     botonAgregar.addEventListener('click', agregarNuevaTarea);
 
     function agregarNuevaTarea(){
-        const textoTarea = inputTarea.value.trim(); /*Trim elimina los espacios en blanco al principio y al final */
+        const textoTarea = inputTarea.value.trim(); //Trim elimina los espacios en blanco al principio y al final 
 
         if (textoTarea === '') {
             mostrarMensajeError('Por favor, escribe una tarea.');
@@ -18,31 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nuevaList = document.createElement('li');
         const spanTarea = document.createElement('span');
-        spanTarea.textContent = textoTarea;
+        spanTarea.textContent = textoTarea; //Escribir la tarea del usuario en este espacio
 
         const botonEliminar = document.createElement('button');
         botonEliminar.textContent = 'Eliminar';
         botonEliminar.addEventListener('click', eliminarTarea);
 
-        nuevaList.appendChild(spanTarea);
-        nuevaList.appendChild(botonEliminar);
-        listaTareas.appendChild(nuevaList);
+        nuevaList.appendChild(spanTarea); //se coloca la tarea escrita en la línea 
+        nuevaList.appendChild(botonEliminar); //Se coloca el boton Eliminar 
+        listaTareas.appendChild(nuevaList); //Se añade a la linea de lista grande 
 
         inputTarea.value = ''; // Limpiar el campo de texto
 
         // Funcionalidad de marcar como completada directamente en el listener de la lista
         spanTarea.addEventListener('click', marcarComoCompletada);
-    }
-
-    function eliminarTarea(evento) {
-        const botonEliminar = evento.target;
-        const tareaLi = botonEliminar.parentNode;
-        listaTareas.removeChild(tareaLi);
-    }
-
-    function marcarComoCompletada(evento) {
-        const tareaSpan = evento.target;
-        tareaSpan.parentNode.classList.toggle('completada');
     }
 
     function mostrarMensajeError(mensaje) {
@@ -62,4 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
             mensajeError.style.display = 'none';
         }
     }
+
+    function eliminarTarea(evento) {
+        const botonEliminar = evento.target;
+        const tareaLi = botonEliminar.parentNode;
+        listaTareas.removeChild(tareaLi);
+    }
+
+    function marcarComoCompletada(evento) {
+        const tareaSpan = evento.target;
+        tareaSpan.parentNode.classList.toggle('completada');
+    }
+
 });
